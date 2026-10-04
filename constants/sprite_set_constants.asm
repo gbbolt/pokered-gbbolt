@@ -1,0 +1,61 @@
+; sprite set ids
+; indexes for SpriteSets (see data/maps/sprite_sets.asm)
+; values for MapSpriteSets and SplitMapSpriteSets (see data/maps/sprite_sets.asm)
+	; 01
+DEF SPRITESET_PALLET_VIRIDIAN EQU 1
+	; 02
+DEF SPRITESET_PEWTER_CERULEAN EQU 2
+	; 03
+DEF SPRITESET_LAVENDER EQU 3
+	; 04
+DEF SPRITESET_VERMILION EQU 4
+	; 05
+DEF SPRITESET_CELADON EQU 5
+	; 06
+DEF SPRITESET_INDIGO EQU 6
+	; 07
+DEF SPRITESET_SAFFRON EQU 7
+	; 08
+DEF SPRITESET_SILENCE_BRIDGE EQU 8
+	; 09
+DEF SPRITESET_CYCLING_ROAD EQU 9
+	; 0a
+DEF SPRITESET_FUCHSIA EQU $A
+DEF NUM_SPRITE_SETS EQU $A
+
+; split sprite set ids
+; indexes for SplitMapSpriteSets (see data/maps/sprite_sets.asm)
+; values for MapSpriteSets (see data/maps/sprite_sets.asm)
+DEF FIRST_SPLIT_SET EQU $F1
+	; f1
+DEF SPLITSET_ROUTE_2 EQU $F1
+	; f2
+DEF SPLITSET_ROUTE_10 EQU $F2
+	; f3
+DEF SPLITSET_ROUTE_11 EQU $F3
+	; f4
+DEF SPLITSET_ROUTE_12 EQU $F4
+	; f5
+DEF SPLITSET_ROUTE_15 EQU $F5
+	; f6
+DEF SPLITSET_ROUTE_16 EQU $F6
+	; f7
+DEF SPLITSET_ROUTE_18 EQU $F7
+	; f8
+DEF SPLITSET_ROUTE_20 EQU $F8
+	; f9
+DEF SPLITSET_ROUTE_5 EQU $F9
+	; fa
+DEF SPLITSET_ROUTE_6 EQU $FA
+	; fb
+DEF SPLITSET_ROUTE_7 EQU $FB
+	; fc
+DEF SPLITSET_ROUTE_8 EQU $FC
+DEF NUM_SPLIT_SETS EQU $C
+
+; split directions
+DEF EAST_WEST   EQU 1
+DEF NORTH_SOUTH EQU 2
+
+; each sprite set has 9 walking sprites and 2 still sprites
+DEF SPRITE_SET_LENGTH EQU 9 + 2

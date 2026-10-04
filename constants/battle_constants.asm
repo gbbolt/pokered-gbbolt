@@ -1,0 +1,128 @@
+DEF MAX_LEVEL EQU 100
+
+; maximum moves known per mon
+DEF NUM_MOVES EQU 4
+
+; significant stat values
+DEF BASE_STAT_LEVEL EQU 7
+DEF MAX_STAT_LEVEL EQU 13
+
+; VitaminStats indexes (see data/battle/stat_names.asm)
+DEF STAT_HEALTH EQU 1
+DEF STAT_ATTACK EQU 2
+DEF STAT_DEFENSE EQU 3
+DEF STAT_SPEED EQU 4
+DEF STAT_SPECIAL EQU 5
+DEF NUM_STATS EQU 5
+
+; StatModTextStrings indexes (see data/battle/stat_mod_names.asm)
+DEF MOD_ATTACK EQU 0
+DEF MOD_DEFENSE EQU 1
+DEF MOD_SPEED EQU 2
+DEF MOD_SPECIAL EQU 3
+DEF MOD_ACCURACY EQU 4
+DEF MOD_EVASION EQU 5
+DEF NUM_STAT_MODS EQU 8
+
+; Moves struct fields (see data/moves/moves.asm)
+DEF MOVE_ANIM EQU 0
+DEF MOVE_EFFECT EQU 1
+DEF MOVE_POWER EQU 2
+DEF MOVE_TYPE EQU 3
+DEF MOVE_ACC EQU 4
+DEF MOVE_PP EQU 5
+DEF MOVE_LENGTH EQU 6
+
+; battle classes (wIsInBattle values)
+DEF WILD_BATTLE EQU 1
+DEF TRAINER_BATTLE EQU 2
+DEF LOST_BATTLE EQU $FF
+
+; battle type constants (wBattleType values)
+	; 0
+DEF BATTLE_TYPE_NORMAL EQU 0
+	; 1
+DEF BATTLE_TYPE_OLD_MAN EQU 1
+	; 2
+DEF BATTLE_TYPE_SAFARI EQU 2
+
+; damage limits before type effectiveness
+DEF MIN_NEUTRAL_DAMAGE EQU 2
+DEF MAX_NEUTRAL_DAMAGE EQU 999
+
+; fixed damage constants
+DEF SONICBOOM_DAMAGE   EQU 20
+DEF DRAGON_RAGE_DAMAGE EQU 40
+
+; type effectiveness factors, scaled by 10
+DEF SUPER_EFFECTIVE    EQU 20
+DEF MORE_EFFECTIVE     EQU 15
+DEF EFFECTIVE          EQU 10
+DEF NOT_VERY_EFFECTIVE EQU 05
+DEF NO_EFFECT          EQU 00
+
+; non-volatile statuses
+DEF SLP_MASK EQU %111 ; 0-7 turns
+	; 3
+DEF PSN EQU 3
+	; 4
+DEF BRN EQU 4
+	; 5
+DEF FRZ EQU 5
+	; 6
+DEF PAR EQU 6
+
+DEF MAX_STAT_VALUE EQU 999
+
+; trainer dvs
+DEF ATKDEFDV_TRAINER EQU $98
+DEF SPDSPCDV_TRAINER EQU $88
+
+; wDamageMultipliers
+DEF BIT_STAB_DAMAGE EQU 7
+DEF EFFECTIVENESS_MASK EQU %01111111
+
+; wPlayerBattleStatus1 or wEnemyBattleStatus1 bit flags
+	; 0 ; Bide
+DEF STORING_ENERGY EQU 0
+	; 1 ; Thrash, Petal Dance
+DEF THRASHING_ABOUT EQU 1
+	; 2 ; e.g. Double Kick, Fury Attack
+DEF ATTACKING_MULTIPLE_TIMES EQU 2
+	; 3
+DEF FLINCHED EQU 3
+	; 4 ; e.g. Solar Beam, Fly
+DEF CHARGING_UP EQU 4
+	; 5 ; e.g. Wrap
+DEF USING_TRAPPING_MOVE EQU 5
+	; 6 ; charging up Fly/Dig
+DEF INVULNERABLE EQU 6
+	; 7
+DEF CONFUSED EQU 7
+
+; wPlayerBattleStatus2 or wEnemyBattleStatus2 bit flags
+	; 0
+DEF USING_X_ACCURACY EQU 0
+	; 1
+DEF PROTECTED_BY_MIST EQU 1
+	; 2 ; Focus Energy
+DEF GETTING_PUMPED EQU 2
+	; 3 ; unused
+	; 4
+DEF HAS_SUBSTITUTE_UP EQU 4
+	; 5 ; Hyper Beam
+DEF NEEDS_TO_RECHARGE EQU 5
+	; 6
+DEF USING_RAGE EQU 6
+	; 7 ; Leech Seed
+DEF SEEDED EQU 7
+
+; wPlayerBattleStatus3 or wEnemyBattleStatus3 bit flags
+	; 0 ; Toxic
+DEF BADLY_POISONED EQU 0
+	; 1
+DEF HAS_LIGHT_SCREEN_UP EQU 1
+	; 2
+DEF HAS_REFLECT_UP EQU 2
+	; 3
+DEF TRANSFORMED EQU 3

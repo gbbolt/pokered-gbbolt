@@ -1,0 +1,2609 @@
+{
+ "_doc": "    python tools/make_sound_json.py  The game has three copies of its sound engine, each in its own bank with its own songs and effects (Audio1_* in bank $02, Audio2_* in bank $08 for battles, Audio3_* in bank $1F). A sound id is an index into the header table at the start of that bank: 3 bytes per channel, so a sound that uses three channels takes three ids. PlaySound starts the sound whose id is in A, in the bank wAudioROMBank names; VBlank then calls that bank's AudioN_UpdateMusic every frame.  A cry is one of the 38 base cries (SFX_Cry00 ...) played with a pitch and a tempo change: GetCryData reads the Pokemon's 3 bytes of CryData (base cry, wFrequencyModifier, wTempoModifier), and the engine applies them while the cry plays.",
+ "init": "StopAllSounds",
+ "update": "Audio1_UpdateMusic",
+ "power_on": [
+  [
+   "0xFF26",
+   128
+  ],
+  [
+   "0xFF25",
+   255
+  ],
+  [
+   "0xFF24",
+   119
+  ]
+ ],
+ "stack": "0xDFF0",
+ "_loop_channels": "a music channel loops when where it reads, where it returns to and its loop counter repeat",
+ "loop_channels": {
+  "count": 4,
+  "active": "wChannelSoundIDs",
+  "fields": [
+   [
+    "wChannelCommandPointers",
+    2
+   ],
+   [
+    "wChannelReturnAddresses",
+    2
+   ],
+   [
+    "wChannelLoopCounters",
+    1
+   ]
+  ]
+ },
+ "kinds": {
+  "music1": {
+   "request_call": "PlaySound",
+   "bank": 2,
+   "update": "Audio1_UpdateMusic",
+   "setup": {
+    "wAudioROMBank": 2,
+    "wAudioSavedROMBank": 2
+   },
+   "label": "Music",
+   "playing": [
+    "0xC026",
+    "0xC027",
+    "0xC028",
+    "0xC029"
+   ],
+   "playing_mask": 255,
+   "ids": {
+    "list": [
+     186,
+     189,
+     192,
+     195,
+     199,
+     202,
+     205,
+     208,
+     212,
+     216,
+     219,
+     222,
+     225,
+     229,
+     232,
+     235,
+     239,
+     243,
+     247,
+     251
+    ]
+   },
+   "loops": true,
+   "max_seconds": 240
+  },
+  "music2": {
+   "request_call": "PlaySound",
+   "bank": 8,
+   "update": "Audio2_UpdateMusic",
+   "setup": {
+    "wAudioROMBank": 8,
+    "wAudioSavedROMBank": 8
+   },
+   "label": "Battle music",
+   "playing": [
+    "0xC026",
+    "0xC027",
+    "0xC028",
+    "0xC029"
+   ],
+   "playing_mask": 255,
+   "ids": {
+    "list": [
+     234,
+     237,
+     240,
+     243,
+     246,
+     249,
+     252
+    ]
+   },
+   "loops": true,
+   "max_seconds": 240
+  },
+  "music3": {
+   "request_call": "PlaySound",
+   "bank": 31,
+   "update": "Audio3_UpdateMusic",
+   "setup": {
+    "wAudioROMBank": 31,
+    "wAudioSavedROMBank": 31
+   },
+   "label": "More music",
+   "playing": [
+    "0xC026",
+    "0xC027",
+    "0xC028",
+    "0xC029"
+   ],
+   "playing_mask": 255,
+   "ids": {
+    "list": [
+     195,
+     199,
+     202,
+     205,
+     208,
+     210,
+     214,
+     217,
+     220,
+     224,
+     228,
+     232,
+     236,
+     240,
+     243,
+     246,
+     249,
+     252
+    ]
+   },
+   "loops": true,
+   "max_seconds": 240
+  },
+  "sfx1": {
+   "request_call": "PlaySound",
+   "bank": 2,
+   "update": "Audio1_UpdateMusic",
+   "setup": {
+    "wAudioROMBank": 2,
+    "wAudioSavedROMBank": 2
+   },
+   "label": "Sound effects",
+   "playing": [
+    "0xC02A",
+    "0xC02B",
+    "0xC02C",
+    "0xC02D"
+   ],
+   "playing_mask": 255,
+   "ids": {
+    "list": [
+     134,
+     137,
+     140,
+     141,
+     142,
+     143,
+     144,
+     145,
+     148,
+     151,
+     152,
+     153,
+     154,
+     155,
+     156,
+     157,
+     158,
+     159,
+     160,
+     161,
+     162,
+     163,
+     164,
+     165,
+     167,
+     168,
+     169,
+     171,
+     172,
+     173,
+     174,
+     176,
+     178,
+     180,
+     181,
+     182,
+     184,
+     185
+    ]
+   },
+   "max_seconds": 8
+  },
+  "sfx2": {
+   "request_call": "PlaySound",
+   "bank": 8,
+   "update": "Audio2_UpdateMusic",
+   "setup": {
+    "wAudioROMBank": 8,
+    "wAudioSavedROMBank": 8
+   },
+   "label": "Battle sound effects",
+   "playing": [
+    "0xC02A",
+    "0xC02B",
+    "0xC02C",
+    "0xC02D"
+   ],
+   "playing_mask": 255,
+   "ids": {
+    "list": [
+     134,
+     145,
+     147,
+     149,
+     151,
+     152,
+     154,
+     157,
+     158,
+     159,
+     160,
+     161,
+     162,
+     163,
+     164,
+     165,
+     166,
+     167,
+     168,
+     169,
+     170,
+     171,
+     172,
+     173,
+     174,
+     175,
+     176,
+     177,
+     178,
+     179,
+     180,
+     182,
+     183,
+     184,
+     185,
+     186,
+     187,
+     189,
+     190,
+     191,
+     194,
+     197,
+     199,
+     202,
+     204,
+     207,
+     210,
+     213,
+     216,
+     219,
+     221,
+     223,
+     225,
+     228,
+     230,
+     233
+    ]
+   },
+   "max_seconds": 8
+  },
+  "sfx3": {
+   "request_call": "PlaySound",
+   "bank": 31,
+   "update": "Audio3_UpdateMusic",
+   "setup": {
+    "wAudioROMBank": 31,
+    "wAudioSavedROMBank": 31
+   },
+   "label": "More sound effects",
+   "playing": [
+    "0xC02A",
+    "0xC02B",
+    "0xC02C",
+    "0xC02D"
+   ],
+   "playing_mask": 255,
+   "ids": {
+    "list": [
+     184,
+     185,
+     186,
+     187,
+     188,
+     189,
+     190,
+     191,
+     192,
+     194
+    ]
+   },
+   "max_seconds": 8
+  },
+  "drums": {
+   "request_call": "PlaySound",
+   "bank": 2,
+   "update": "Audio1_UpdateMusic",
+   "setup": {
+    "wAudioROMBank": 2,
+    "wAudioSavedROMBank": 2
+   },
+   "label": "Drums",
+   "playing": [
+    "0xC02A",
+    "0xC02B",
+    "0xC02C",
+    "0xC02D"
+   ],
+   "playing_mask": 255,
+   "ids": {
+    "list": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15,
+     16,
+     17,
+     18,
+     19
+    ]
+   },
+   "max_seconds": 2
+  },
+  "cries": {
+   "label": "Cries",
+   "request_call": "PlaySound",
+   "bank": 2,
+   "update": "Audio1_UpdateMusic",
+   "setup": {
+    "wAudioROMBank": 2,
+    "wAudioSavedROMBank": 2
+   },
+   "playing": [
+    "0xC02A",
+    "0xC02B",
+    "0xC02C",
+    "0xC02D"
+   ],
+   "playing_mask": 255,
+   "ids": {
+    "list": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15,
+     16,
+     17,
+     18,
+     19,
+     20,
+     21,
+     22,
+     23,
+     24,
+     25,
+     26,
+     27,
+     28,
+     29,
+     30,
+     31,
+     32,
+     33,
+     34,
+     35,
+     36,
+     37,
+     38,
+     39,
+     40,
+     41,
+     42,
+     43,
+     44,
+     45,
+     46,
+     47,
+     48,
+     49,
+     50,
+     51,
+     52,
+     53,
+     54,
+     55,
+     56,
+     57,
+     58,
+     59,
+     60,
+     61,
+     62,
+     63,
+     64,
+     65,
+     66,
+     67,
+     68,
+     69,
+     70,
+     71,
+     72,
+     73,
+     74,
+     75,
+     76,
+     77,
+     78,
+     79,
+     80,
+     81,
+     82,
+     83,
+     84,
+     85,
+     86,
+     87,
+     88,
+     89,
+     90,
+     91,
+     92,
+     93,
+     94,
+     95,
+     96,
+     97,
+     98,
+     99,
+     100,
+     101,
+     102,
+     103,
+     104,
+     105,
+     106,
+     107,
+     108,
+     109,
+     110,
+     111,
+     112,
+     113,
+     114,
+     115,
+     116,
+     117,
+     118,
+     119,
+     120,
+     121,
+     122,
+     123,
+     124,
+     125,
+     126,
+     127,
+     128,
+     129,
+     130,
+     131,
+     132,
+     133,
+     134,
+     135,
+     136,
+     137,
+     138,
+     139,
+     140,
+     141,
+     142,
+     143,
+     144,
+     145,
+     146,
+     147,
+     148,
+     149,
+     150,
+     151
+    ]
+   },
+   "requests": {
+    "112": 71,
+    "115": 29,
+    "32": 20,
+    "35": 95,
+    "21": 68,
+    "100": 38,
+    "34": 47,
+    "80": 113,
+    "2": 65,
+    "103": 59,
+    "108": 56,
+    "102": 53,
+    "88": 35,
+    "94": 41,
+    "29": 23,
+    "31": 50,
+    "104": 95,
+    "111": 32,
+    "131": 101,
+    "59": 83,
+    "151": 110,
+    "130": 89,
+    "90": 92,
+    "72": 98,
+    "92": 104,
+    "123": 86,
+    "120": 110,
+    "9": 77,
+    "127": 80,
+    "114": 74,
+    "58": 113,
+    "95": 89,
+    "22": 92,
+    "16": 62,
+    "79": 26,
+    "64": 104,
+    "75": 128,
+    "113": 80,
+    "67": 113,
+    "122": 116,
+    "106": 74,
+    "107": 56,
+    "24": 89,
+    "47": 110,
+    "54": 119,
+    "96": 59,
+    "76": 74,
+    "126": 32,
+    "125": 38,
+    "82": 104,
+    "109": 74,
+    "56": 50,
+    "86": 56,
+    "50": 53,
+    "128": 107,
+    "83": 68,
+    "48": 98,
+    "149": 65,
+    "84": 53,
+    "60": 62,
+    "124": 59,
+    "146": 47,
+    "144": 47,
+    "145": 92,
+    "132": 62,
+    "52": 95,
+    "98": 116,
+    "37": 128,
+    "38": 128,
+    "25": 65,
+    "26": 47,
+    "147": 65,
+    "148": 65,
+    "140": 86,
+    "141": 92,
+    "116": 95,
+    "117": 95,
+    "27": 20,
+    "28": 20,
+    "138": 113,
+    "139": 113,
+    "39": 62,
+    "40": 62,
+    "133": 98,
+    "136": 98,
+    "135": 98,
+    "134": 98,
+    "66": 113,
+    "41": 107,
+    "23": 89,
+    "46": 110,
+    "61": 62,
+    "62": 62,
+    "13": 83,
+    "14": 77,
+    "15": 77,
+    "85": 53,
+    "57": 50,
+    "51": 53,
+    "49": 98,
+    "87": 56,
+    "10": 86,
+    "11": 104,
+    "12": 86,
+    "68": 113,
+    "55": 119,
+    "97": 59,
+    "42": 107,
+    "150": 110,
+    "143": 35,
+    "129": 89,
+    "89": 41,
+    "99": 116,
+    "91": 92,
+    "101": 38,
+    "36": 95,
+    "110": 74,
+    "53": 95,
+    "105": 44,
+    "93": 104,
+    "63": 104,
+    "65": 104,
+    "17": 80,
+    "18": 80,
+    "121": 110,
+    "1": 65,
+    "3": 65,
+    "73": 98,
+    "118": 86,
+    "119": 86,
+    "77": 131,
+    "78": 131,
+    "19": 122,
+    "20": 122,
+    "33": 20,
+    "30": 23,
+    "74": 128,
+    "137": 131,
+    "142": 125,
+    "81": 104,
+    "4": 32,
+    "7": 107,
+    "5": 32,
+    "8": 107,
+    "6": 32,
+    "43": 44,
+    "44": 44,
+    "45": 125,
+    "69": 119,
+    "70": 131,
+    "71": 131
+   },
+   "max_seconds": 4
+  }
+ },
+ "effect_channels": {
+  "sfx1": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "sfx2": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "sfx3": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "drums": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "cries": [
+   0,
+   1,
+   2,
+   3
+  ]
+ },
+ "owner_current_first": true,
+ "names": {
+  "drums 1": [
+   "Drum 01",
+   "SFX_Noise_Instrument01_1"
+  ],
+  "drums 2": [
+   "Drum 02",
+   "SFX_Noise_Instrument02_1"
+  ],
+  "drums 3": [
+   "Drum 03",
+   "SFX_Noise_Instrument03_1"
+  ],
+  "drums 4": [
+   "Drum 04",
+   "SFX_Noise_Instrument04_1"
+  ],
+  "drums 5": [
+   "Drum 05",
+   "SFX_Noise_Instrument05_1"
+  ],
+  "drums 6": [
+   "Drum 06",
+   "SFX_Noise_Instrument06_1"
+  ],
+  "drums 7": [
+   "Drum 07",
+   "SFX_Noise_Instrument07_1"
+  ],
+  "drums 8": [
+   "Drum 08",
+   "SFX_Noise_Instrument08_1"
+  ],
+  "drums 9": [
+   "Drum 09",
+   "SFX_Noise_Instrument09_1"
+  ],
+  "drums 10": [
+   "Drum 10",
+   "SFX_Noise_Instrument10_1"
+  ],
+  "drums 11": [
+   "Drum 11",
+   "SFX_Noise_Instrument11_1"
+  ],
+  "drums 12": [
+   "Drum 12",
+   "SFX_Noise_Instrument12_1"
+  ],
+  "drums 13": [
+   "Drum 13",
+   "SFX_Noise_Instrument13_1"
+  ],
+  "drums 14": [
+   "Drum 14",
+   "SFX_Noise_Instrument14_1"
+  ],
+  "drums 15": [
+   "Drum 15",
+   "SFX_Noise_Instrument15_1"
+  ],
+  "drums 16": [
+   "Drum 16",
+   "SFX_Noise_Instrument16_1"
+  ],
+  "drums 17": [
+   "Drum 17",
+   "SFX_Noise_Instrument17_1"
+  ],
+  "drums 18": [
+   "Drum 18",
+   "SFX_Noise_Instrument18_1"
+  ],
+  "drums 19": [
+   "Drum 19",
+   "SFX_Noise_Instrument19_1"
+  ],
+  "sfx1 134": [
+   "Get Item 1",
+   "SFX_Get_Item1_1"
+  ],
+  "sfx1 137": [
+   "Get Item 2",
+   "SFX_Get_Item2_1"
+  ],
+  "sfx1 140": [
+   "Tink",
+   "SFX_Tink_1"
+  ],
+  "sfx1 141": [
+   "Heal HP",
+   "SFX_Heal_HP_1"
+  ],
+  "sfx1 142": [
+   "Heal Ailment",
+   "SFX_Heal_Ailment_1"
+  ],
+  "sfx1 143": [
+   "Start Menu",
+   "SFX_Start_Menu_1"
+  ],
+  "sfx1 144": [
+   "Press AB",
+   "SFX_Press_AB_1"
+  ],
+  "sfx1 145": [
+   "Pokedex Rating",
+   "SFX_Pokedex_Rating_1"
+  ],
+  "sfx1 148": [
+   "Get Key Item",
+   "SFX_Get_Key_Item_1"
+  ],
+  "sfx1 151": [
+   "Poisoned",
+   "SFX_Poisoned_1"
+  ],
+  "sfx1 152": [
+   "Trade Machine",
+   "SFX_Trade_Machine_1"
+  ],
+  "sfx1 153": [
+   "Turn On PC",
+   "SFX_Turn_On_PC_1"
+  ],
+  "sfx1 154": [
+   "Turn Off PC",
+   "SFX_Turn_Off_PC_1"
+  ],
+  "sfx1 155": [
+   "Enter PC",
+   "SFX_Enter_PC_1"
+  ],
+  "sfx1 156": [
+   "Shrink",
+   "SFX_Shrink_1"
+  ],
+  "sfx1 157": [
+   "Switch",
+   "SFX_Switch_1"
+  ],
+  "sfx1 158": [
+   "Healing Machine",
+   "SFX_Healing_Machine_1"
+  ],
+  "sfx1 159": [
+   "Teleport Exit 1",
+   "SFX_Teleport_Exit1_1"
+  ],
+  "sfx1 160": [
+   "Teleport Enter 1",
+   "SFX_Teleport_Enter1_1"
+  ],
+  "sfx1 161": [
+   "Teleport Exit 2",
+   "SFX_Teleport_Exit2_1"
+  ],
+  "sfx1 162": [
+   "Ledge",
+   "SFX_Ledge_1"
+  ],
+  "sfx1 163": [
+   "Teleport Enter 2",
+   "SFX_Teleport_Enter2_1"
+  ],
+  "sfx1 164": [
+   "Fly",
+   "SFX_Fly_1"
+  ],
+  "sfx1 165": [
+   "Denied",
+   "SFX_Denied_1"
+  ],
+  "sfx1 167": [
+   "Arrow Tiles",
+   "SFX_Arrow_Tiles_1"
+  ],
+  "sfx1 168": [
+   "Push Boulder",
+   "SFX_Push_Boulder_1"
+  ],
+  "sfx1 169": [
+   "SS Anne Horn",
+   "SFX_SS_Anne_Horn_1"
+  ],
+  "sfx1 171": [
+   "Withdraw Deposit",
+   "SFX_Withdraw_Deposit_1"
+  ],
+  "sfx1 172": [
+   "Cut",
+   "SFX_Cut_1"
+  ],
+  "sfx1 173": [
+   "Go Inside",
+   "SFX_Go_Inside_1"
+  ],
+  "sfx1 174": [
+   "Swap",
+   "SFX_Swap_1"
+  ],
+  "sfx1 176": [
+   "59",
+   "SFX_59_1"
+  ],
+  "sfx1 178": [
+   "Purchase",
+   "SFX_Purchase_1"
+  ],
+  "sfx1 180": [
+   "Collision",
+   "SFX_Collision_1"
+  ],
+  "sfx1 181": [
+   "Go Outside",
+   "SFX_Go_Outside_1"
+  ],
+  "sfx1 182": [
+   "Save",
+   "SFX_Save_1"
+  ],
+  "sfx1 184": [
+   "Pokeflute",
+   "SFX_Pokeflute"
+  ],
+  "sfx1 185": [
+   "Safari Zone PA",
+   "SFX_Safari_Zone_PA"
+  ],
+  "music1 186": [
+   "Pallet Town",
+   "Music_PalletTown"
+  ],
+  "music1 189": [
+   "Pokecenter",
+   "Music_Pokecenter"
+  ],
+  "music1 192": [
+   "Gym",
+   "Music_Gym"
+  ],
+  "music1 195": [
+   "Cities 1",
+   "Music_Cities1"
+  ],
+  "music1 199": [
+   "Cities 2",
+   "Music_Cities2"
+  ],
+  "music1 202": [
+   "Celadon",
+   "Music_Celadon"
+  ],
+  "music1 205": [
+   "Cinnabar",
+   "Music_Cinnabar"
+  ],
+  "music1 208": [
+   "Vermilion",
+   "Music_Vermilion"
+  ],
+  "music1 212": [
+   "Lavender",
+   "Music_Lavender"
+  ],
+  "music1 216": [
+   "SS Anne",
+   "Music_SSAnne"
+  ],
+  "music1 219": [
+   "Meet Prof Oak",
+   "Music_MeetProfOak"
+  ],
+  "music1 222": [
+   "Meet Rival",
+   "Music_MeetRival"
+  ],
+  "music1 225": [
+   "Museum Guy",
+   "Music_MuseumGuy"
+  ],
+  "music1 229": [
+   "Safari Zone",
+   "Music_SafariZone"
+  ],
+  "music1 232": [
+   "Pkmn Healed",
+   "Music_PkmnHealed"
+  ],
+  "music1 235": [
+   "Routes 1",
+   "Music_Routes1"
+  ],
+  "music1 239": [
+   "Routes 2",
+   "Music_Routes2"
+  ],
+  "music1 243": [
+   "Routes 3",
+   "Music_Routes3"
+  ],
+  "music1 247": [
+   "Routes 4",
+   "Music_Routes4"
+  ],
+  "music1 251": [
+   "Indigo Plateau",
+   "Music_IndigoPlateau"
+  ],
+  "sfx2 134": [
+   "Level Up",
+   "SFX_Level_Up"
+  ],
+  "sfx2 145": [
+   "Ball Toss",
+   "SFX_Ball_Toss"
+  ],
+  "sfx2 147": [
+   "Ball Poof",
+   "SFX_Ball_Poof"
+  ],
+  "sfx2 149": [
+   "Faint Thud",
+   "SFX_Faint_Thud"
+  ],
+  "sfx2 151": [
+   "Run",
+   "SFX_Run"
+  ],
+  "sfx2 152": [
+   "Dex Page Added",
+   "SFX_Dex_Page_Added"
+  ],
+  "sfx2 154": [
+   "Caught Mon",
+   "SFX_Caught_Mon"
+  ],
+  "sfx2 157": [
+   "Peck",
+   "SFX_Peck"
+  ],
+  "sfx2 158": [
+   "Faint Fall",
+   "SFX_Faint_Fall"
+  ],
+  "sfx2 159": [
+   "Battle 09",
+   "SFX_Battle_09"
+  ],
+  "sfx2 160": [
+   "Pound",
+   "SFX_Pound"
+  ],
+  "sfx2 161": [
+   "Battle 0B",
+   "SFX_Battle_0B"
+  ],
+  "sfx2 162": [
+   "Battle 0C",
+   "SFX_Battle_0C"
+  ],
+  "sfx2 163": [
+   "Battle 0D",
+   "SFX_Battle_0D"
+  ],
+  "sfx2 164": [
+   "Battle 0E",
+   "SFX_Battle_0E"
+  ],
+  "sfx2 165": [
+   "Battle 0F",
+   "SFX_Battle_0F"
+  ],
+  "sfx2 166": [
+   "Damage",
+   "SFX_Damage"
+  ],
+  "sfx2 167": [
+   "Not Very Effective",
+   "SFX_Not_Very_Effective"
+  ],
+  "sfx2 168": [
+   "Battle 12",
+   "SFX_Battle_12"
+  ],
+  "sfx2 169": [
+   "Battle 13",
+   "SFX_Battle_13"
+  ],
+  "sfx2 170": [
+   "Battle 14",
+   "SFX_Battle_14"
+  ],
+  "sfx2 171": [
+   "Vine Whip",
+   "SFX_Vine_Whip"
+  ],
+  "sfx2 172": [
+   "Battle 16",
+   "SFX_Battle_16"
+  ],
+  "sfx2 173": [
+   "Battle 17",
+   "SFX_Battle_17"
+  ],
+  "sfx2 174": [
+   "Battle 18",
+   "SFX_Battle_18"
+  ],
+  "sfx2 175": [
+   "Battle 19",
+   "SFX_Battle_19"
+  ],
+  "sfx2 176": [
+   "Super Effective",
+   "SFX_Super_Effective"
+  ],
+  "sfx2 177": [
+   "Battle 1B",
+   "SFX_Battle_1B"
+  ],
+  "sfx2 178": [
+   "Battle 1C",
+   "SFX_Battle_1C"
+  ],
+  "sfx2 179": [
+   "Doubleslap",
+   "SFX_Doubleslap"
+  ],
+  "sfx2 180": [
+   "Battle 1E",
+   "SFX_Battle_1E"
+  ],
+  "sfx2 182": [
+   "Horn Drill",
+   "SFX_Horn_Drill"
+  ],
+  "sfx2 183": [
+   "Battle 20",
+   "SFX_Battle_20"
+  ],
+  "sfx2 184": [
+   "Battle 21",
+   "SFX_Battle_21"
+  ],
+  "sfx2 185": [
+   "Battle 22",
+   "SFX_Battle_22"
+  ],
+  "sfx2 186": [
+   "Battle 23",
+   "SFX_Battle_23"
+  ],
+  "sfx2 187": [
+   "Battle 24",
+   "SFX_Battle_24"
+  ],
+  "sfx2 189": [
+   "Battle 25",
+   "SFX_Battle_25"
+  ],
+  "sfx2 190": [
+   "Battle 26",
+   "SFX_Battle_26"
+  ],
+  "sfx2 191": [
+   "Battle 27",
+   "SFX_Battle_27"
+  ],
+  "sfx2 194": [
+   "Battle 28",
+   "SFX_Battle_28"
+  ],
+  "sfx2 197": [
+   "Battle 29",
+   "SFX_Battle_29"
+  ],
+  "sfx2 199": [
+   "Battle 2A",
+   "SFX_Battle_2A"
+  ],
+  "sfx2 202": [
+   "Battle 2B",
+   "SFX_Battle_2B"
+  ],
+  "sfx2 204": [
+   "Battle 2C",
+   "SFX_Battle_2C"
+  ],
+  "sfx2 207": [
+   "Psybeam",
+   "SFX_Psybeam"
+  ],
+  "sfx2 210": [
+   "Battle 2E",
+   "SFX_Battle_2E"
+  ],
+  "sfx2 213": [
+   "Battle 2F",
+   "SFX_Battle_2F"
+  ],
+  "sfx2 216": [
+   "Psychic M",
+   "SFX_Psychic_M"
+  ],
+  "sfx2 219": [
+   "Battle 31",
+   "SFX_Battle_31"
+  ],
+  "sfx2 221": [
+   "Battle 32",
+   "SFX_Battle_32"
+  ],
+  "sfx2 223": [
+   "Battle 33",
+   "SFX_Battle_33"
+  ],
+  "sfx2 225": [
+   "Battle 34",
+   "SFX_Battle_34"
+  ],
+  "sfx2 228": [
+   "Battle 35",
+   "SFX_Battle_35"
+  ],
+  "sfx2 230": [
+   "Battle 36",
+   "SFX_Battle_36"
+  ],
+  "sfx2 233": [
+   "Trainer Appeared",
+   "SFX_Trainer_Appeared"
+  ],
+  "music2 234": [
+   "Gym Leader Battle",
+   "Music_GymLeaderBattle"
+  ],
+  "music2 237": [
+   "Trainer Battle",
+   "Music_TrainerBattle"
+  ],
+  "music2 240": [
+   "Wild Battle",
+   "Music_WildBattle"
+  ],
+  "music2 243": [
+   "Final Battle",
+   "Music_FinalBattle"
+  ],
+  "music2 246": [
+   "Defeated Trainer",
+   "Music_DefeatedTrainer"
+  ],
+  "music2 249": [
+   "Defeated Wild Mon",
+   "Music_DefeatedWildMon"
+  ],
+  "music2 252": [
+   "Defeated Gym Leader",
+   "Music_DefeatedGymLeader"
+  ],
+  "sfx3 184": [
+   "Intro Lunge",
+   "SFX_Intro_Lunge"
+  ],
+  "sfx3 185": [
+   "Intro Hip",
+   "SFX_Intro_Hip"
+  ],
+  "sfx3 186": [
+   "Intro Hop",
+   "SFX_Intro_Hop"
+  ],
+  "sfx3 187": [
+   "Intro Raise",
+   "SFX_Intro_Raise"
+  ],
+  "sfx3 188": [
+   "Intro Crash",
+   "SFX_Intro_Crash"
+  ],
+  "sfx3 189": [
+   "Intro Whoosh",
+   "SFX_Intro_Whoosh"
+  ],
+  "sfx3 190": [
+   "Slots Stop Wheel",
+   "SFX_Slots_Stop_Wheel"
+  ],
+  "sfx3 191": [
+   "Slots Reward",
+   "SFX_Slots_Reward"
+  ],
+  "sfx3 192": [
+   "Slots New Spin",
+   "SFX_Slots_New_Spin"
+  ],
+  "sfx3 194": [
+   "Shooting Star",
+   "SFX_Shooting_Star"
+  ],
+  "music3 195": [
+   "Title Screen",
+   "Music_TitleScreen"
+  ],
+  "music3 199": [
+   "Credits",
+   "Music_Credits"
+  ],
+  "music3 202": [
+   "Hall Of Fame",
+   "Music_HallOfFame"
+  ],
+  "music3 205": [
+   "Oaks Lab",
+   "Music_OaksLab"
+  ],
+  "music3 208": [
+   "Jigglypuff Song",
+   "Music_JigglypuffSong"
+  ],
+  "music3 210": [
+   "Bike Riding",
+   "Music_BikeRiding"
+  ],
+  "music3 214": [
+   "Surfing",
+   "Music_Surfing"
+  ],
+  "music3 217": [
+   "Game Corner",
+   "Music_GameCorner"
+  ],
+  "music3 220": [
+   "Intro Battle",
+   "Music_IntroBattle"
+  ],
+  "music3 224": [
+   "Dungeon 1",
+   "Music_Dungeon1"
+  ],
+  "music3 228": [
+   "Dungeon 2",
+   "Music_Dungeon2"
+  ],
+  "music3 232": [
+   "Dungeon 3",
+   "Music_Dungeon3"
+  ],
+  "music3 236": [
+   "Cinnabar Mansion",
+   "Music_CinnabarMansion"
+  ],
+  "music3 240": [
+   "Pokemon Tower",
+   "Music_PokemonTower"
+  ],
+  "music3 243": [
+   "Silph Co",
+   "Music_SilphCo"
+  ],
+  "music3 246": [
+   "Meet Evil Trainer",
+   "Music_MeetEvilTrainer"
+  ],
+  "music3 249": [
+   "Meet Female Trainer",
+   "Music_MeetFemaleTrainer"
+  ],
+  "music3 252": [
+   "Meet Male Trainer",
+   "Music_MeetMaleTrainer"
+  ],
+  "cries 112": [
+   "#112 Rhydon",
+   "CryData: base cry 11, pitch 00, length 80"
+  ],
+  "cries 115": [
+   "#115 Kangaskhan",
+   "CryData: base cry 03, pitch 00, length 80"
+  ],
+  "cries 32": [
+   "#032 Nidoran♂",
+   "CryData: base cry 00, pitch 00, length 80"
+  ],
+  "cries 35": [
+   "#035 Clefairy",
+   "CryData: base cry 19, pitch CC, length 01"
+  ],
+  "cries 21": [
+   "#021 Spearow",
+   "CryData: base cry 10, pitch 00, length 80"
+  ],
+  "cries 100": [
+   "#100 Voltorb",
+   "CryData: base cry 06, pitch ED, length 80"
+  ],
+  "cries 34": [
+   "#034 Nidoking",
+   "CryData: base cry 09, pitch 00, length 80"
+  ],
+  "cries 80": [
+   "#080 Slowbro",
+   "CryData: base cry 1F, pitch 00, length 80"
+  ],
+  "cries 2": [
+   "#002 Ivysaur",
+   "CryData: base cry 0F, pitch 20, length 80"
+  ],
+  "cries 103": [
+   "#103 Exeggutor",
+   "CryData: base cry 0D, pitch 00, length 80"
+  ],
+  "cries 108": [
+   "#108 Lickitung",
+   "CryData: base cry 0C, pitch 00, length 80"
+  ],
+  "cries 102": [
+   "#102 Exeggcute",
+   "CryData: base cry 0B, pitch 00, length 80"
+  ],
+  "cries 88": [
+   "#088 Grimer",
+   "CryData: base cry 05, pitch 00, length 80"
+  ],
+  "cries 94": [
+   "#094 Gengar",
+   "CryData: base cry 07, pitch 00, length FF"
+  ],
+  "cries 29": [
+   "#029 Nidoran♀",
+   "CryData: base cry 01, pitch 00, length 80"
+  ],
+  "cries 31": [
+   "#031 Nidoqueen",
+   "CryData: base cry 0A, pitch 00, length 80"
+  ],
+  "cries 104": [
+   "#104 Cubone",
+   "CryData: base cry 19, pitch 00, length 80"
+  ],
+  "cries 111": [
+   "#111 Rhyhorn",
+   "CryData: base cry 04, pitch 00, length 80"
+  ],
+  "cries 131": [
+   "#131 Lapras",
+   "CryData: base cry 1B, pitch 00, length 80"
+  ],
+  "cries 59": [
+   "#059 Arcanine",
+   "CryData: base cry 15, pitch 00, length 80"
+  ],
+  "cries 151": [
+   "#151 Mew",
+   "CryData: base cry 1E, pitch EE, length FF"
+  ],
+  "cries 130": [
+   "#130 Gyarados",
+   "CryData: base cry 17, pitch 00, length 80"
+  ],
+  "cries 90": [
+   "#090 Shellder",
+   "CryData: base cry 18, pitch 00, length 80"
+  ],
+  "cries 72": [
+   "#072 Tentacool",
+   "CryData: base cry 1A, pitch 00, length 80"
+  ],
+  "cries 92": [
+   "#092 Gastly",
+   "CryData: base cry 1C, pitch 00, length 80"
+  ],
+  "cries 123": [
+   "#123 Scyther",
+   "CryData: base cry 16, pitch 00, length 80"
+  ],
+  "cries 120": [
+   "#120 Staryu",
+   "CryData: base cry 1E, pitch 02, length 20"
+  ],
+  "cries 9": [
+   "#009 Blastoise",
+   "CryData: base cry 13, pitch 00, length 80"
+  ],
+  "cries 127": [
+   "#127 Pinsir",
+   "CryData: base cry 14, pitch 00, length 80"
+  ],
+  "cries 114": [
+   "#114 Tangela",
+   "CryData: base cry 12, pitch 00, length 80"
+  ],
+  "cries 58": [
+   "#058 Growlithe",
+   "CryData: base cry 1F, pitch 20, length 40"
+  ],
+  "cries 95": [
+   "#095 Onix",
+   "CryData: base cry 17, pitch FF, length C0"
+  ],
+  "cries 22": [
+   "#022 Fearow",
+   "CryData: base cry 18, pitch 40, length A0"
+  ],
+  "cries 16": [
+   "#016 Pidgey",
+   "CryData: base cry 0E, pitch DF, length 04"
+  ],
+  "cries 79": [
+   "#079 Slowpoke",
+   "CryData: base cry 02, pitch 00, length 80"
+  ],
+  "cries 64": [
+   "#064 Kadabra",
+   "CryData: base cry 1C, pitch A8, length C0"
+  ],
+  "cries 75": [
+   "#075 Graveler",
+   "CryData: base cry 24, pitch 00, length 80"
+  ],
+  "cries 113": [
+   "#113 Chansey",
+   "CryData: base cry 14, pitch 0A, length C0"
+  ],
+  "cries 67": [
+   "#067 Machoke",
+   "CryData: base cry 1F, pitch 48, length 60"
+  ],
+  "cries 122": [
+   "#122 Mr.Mime",
+   "CryData: base cry 20, pitch 08, length 40"
+  ],
+  "cries 106": [
+   "#106 Hitmonlee",
+   "CryData: base cry 12, pitch 80, length C0"
+  ],
+  "cries 107": [
+   "#107 Hitmonchan",
+   "CryData: base cry 0C, pitch EE, length C0"
+  ],
+  "cries 24": [
+   "#024 Arbok",
+   "CryData: base cry 17, pitch E0, length 10"
+  ],
+  "cries 47": [
+   "#047 Parasect",
+   "CryData: base cry 1E, pitch 42, length FF"
+  ],
+  "cries 54": [
+   "#054 Psyduck",
+   "CryData: base cry 21, pitch 20, length 60"
+  ],
+  "cries 96": [
+   "#096 Drowzee",
+   "CryData: base cry 0D, pitch 88, length 20"
+  ],
+  "cries 76": [
+   "#076 Golem",
+   "CryData: base cry 12, pitch E0, length 40"
+  ],
+  "cries 126": [
+   "#126 Magmar",
+   "CryData: base cry 04, pitch FF, length 30"
+  ],
+  "cries 125": [
+   "#125 Electabuzz",
+   "CryData: base cry 06, pitch 8F, length FF"
+  ],
+  "cries 82": [
+   "#082 Magneton",
+   "CryData: base cry 1C, pitch 20, length C0"
+  ],
+  "cries 109": [
+   "#109 Koffing",
+   "CryData: base cry 12, pitch E6, length DD"
+  ],
+  "cries 56": [
+   "#056 Mankey",
+   "CryData: base cry 0A, pitch DD, length 60"
+  ],
+  "cries 86": [
+   "#086 Seel",
+   "CryData: base cry 0C, pitch 88, length C0"
+  ],
+  "cries 50": [
+   "#050 Diglett",
+   "CryData: base cry 0B, pitch AA, length 01"
+  ],
+  "cries 128": [
+   "#128 Tauros",
+   "CryData: base cry 1D, pitch 11, length 40"
+  ],
+  "cries 83": [
+   "#083 Farfetch'D",
+   "CryData: base cry 10, pitch DD, length 01"
+  ],
+  "cries 48": [
+   "#048 Venonat",
+   "CryData: base cry 1A, pitch 44, length 40"
+  ],
+  "cries 149": [
+   "#149 Dragonite",
+   "CryData: base cry 0F, pitch 3C, length C0"
+  ],
+  "cries 84": [
+   "#084 Doduo",
+   "CryData: base cry 0B, pitch BB, length 01"
+  ],
+  "cries 60": [
+   "#060 Poliwag",
+   "CryData: base cry 0E, pitch FF, length FF"
+  ],
+  "cries 124": [
+   "#124 Jynx",
+   "CryData: base cry 0D, pitch FF, length FF"
+  ],
+  "cries 146": [
+   "#146 Moltres",
+   "CryData: base cry 09, pitch F8, length 40"
+  ],
+  "cries 144": [
+   "#144 Articuno",
+   "CryData: base cry 09, pitch 80, length 40"
+  ],
+  "cries 145": [
+   "#145 Zapdos",
+   "CryData: base cry 18, pitch FF, length 80"
+  ],
+  "cries 132": [
+   "#132 Ditto",
+   "CryData: base cry 0E, pitch FF, length FF"
+  ],
+  "cries 52": [
+   "#052 Meowth",
+   "CryData: base cry 19, pitch 77, length 10"
+  ],
+  "cries 98": [
+   "#098 Krabby",
+   "CryData: base cry 20, pitch 20, length E0"
+  ],
+  "cries 37": [
+   "#037 Vulpix",
+   "CryData: base cry 24, pitch 4F, length 10"
+  ],
+  "cries 38": [
+   "#038 Ninetales",
+   "CryData: base cry 24, pitch 88, length 60"
+  ],
+  "cries 25": [
+   "#025 Pikachu",
+   "CryData: base cry 0F, pitch EE, length 01"
+  ],
+  "cries 26": [
+   "#026 Raichu",
+   "CryData: base cry 09, pitch EE, length 08"
+  ],
+  "cries 147": [
+   "#147 Dratini",
+   "CryData: base cry 0F, pitch 60, length 40"
+  ],
+  "cries 148": [
+   "#148 Dragonair",
+   "CryData: base cry 0F, pitch 40, length 80"
+  ],
+  "cries 140": [
+   "#140 Kabuto",
+   "CryData: base cry 16, pitch BB, length 40"
+  ],
+  "cries 141": [
+   "#141 Kabutops",
+   "CryData: base cry 18, pitch EE, length 01"
+  ],
+  "cries 116": [
+   "#116 Horsea",
+   "CryData: base cry 19, pitch 99, length 10"
+  ],
+  "cries 117": [
+   "#117 Seadra",
+   "CryData: base cry 19, pitch 3C, length 01"
+  ],
+  "cries 27": [
+   "#027 Sandshrew",
+   "CryData: base cry 00, pitch 20, length 40"
+  ],
+  "cries 28": [
+   "#028 Sandslash",
+   "CryData: base cry 00, pitch FF, length FF"
+  ],
+  "cries 138": [
+   "#138 Omanyte",
+   "CryData: base cry 1F, pitch F0, length 01"
+  ],
+  "cries 139": [
+   "#139 Omastar",
+   "CryData: base cry 1F, pitch FF, length 40"
+  ],
+  "cries 39": [
+   "#039 Jigglypuff",
+   "CryData: base cry 0E, pitch FF, length 35"
+  ],
+  "cries 40": [
+   "#040 Wigglytuff",
+   "CryData: base cry 0E, pitch 68, length 60"
+  ],
+  "cries 133": [
+   "#133 Eevee",
+   "CryData: base cry 1A, pitch 88, length 60"
+  ],
+  "cries 136": [
+   "#136 Flareon",
+   "CryData: base cry 1A, pitch 10, length 20"
+  ],
+  "cries 135": [
+   "#135 Jolteon",
+   "CryData: base cry 1A, pitch 3D, length 80"
+  ],
+  "cries 134": [
+   "#134 Vaporeon",
+   "CryData: base cry 1A, pitch AA, length FF"
+  ],
+  "cries 66": [
+   "#066 Machop",
+   "CryData: base cry 1F, pitch EE, length 01"
+  ],
+  "cries 41": [
+   "#041 Zubat",
+   "CryData: base cry 1D, pitch E0, length 80"
+  ],
+  "cries 23": [
+   "#023 Ekans",
+   "CryData: base cry 17, pitch 12, length 40"
+  ],
+  "cries 46": [
+   "#046 Paras",
+   "CryData: base cry 1E, pitch 20, length E0"
+  ],
+  "cries 61": [
+   "#061 Poliwhirl",
+   "CryData: base cry 0E, pitch 77, length 60"
+  ],
+  "cries 62": [
+   "#062 Poliwrath",
+   "CryData: base cry 0E, pitch 00, length FF"
+  ],
+  "cries 13": [
+   "#013 Weedle",
+   "CryData: base cry 15, pitch EE, length 01"
+  ],
+  "cries 14": [
+   "#014 Kakuna",
+   "CryData: base cry 13, pitch FF, length 01"
+  ],
+  "cries 15": [
+   "#015 Beedrill",
+   "CryData: base cry 13, pitch 60, length 80"
+  ],
+  "cries 85": [
+   "#085 Dodrio",
+   "CryData: base cry 0B, pitch 99, length 20"
+  ],
+  "cries 57": [
+   "#057 Primeape",
+   "CryData: base cry 0A, pitch AF, length 40"
+  ],
+  "cries 51": [
+   "#051 Dugtrio",
+   "CryData: base cry 0B, pitch 2A, length 10"
+  ],
+  "cries 49": [
+   "#049 Venomoth",
+   "CryData: base cry 1A, pitch 29, length 80"
+  ],
+  "cries 87": [
+   "#087 Dewgong",
+   "CryData: base cry 0C, pitch 23, length FF"
+  ],
+  "cries 10": [
+   "#010 Caterpie",
+   "CryData: base cry 16, pitch 80, length 20"
+  ],
+  "cries 11": [
+   "#011 Metapod",
+   "CryData: base cry 1C, pitch CC, length 01"
+  ],
+  "cries 12": [
+   "#012 Butterfree",
+   "CryData: base cry 16, pitch 77, length 40"
+  ],
+  "cries 68": [
+   "#068 Machamp",
+   "CryData: base cry 1F, pitch 08, length C0"
+  ],
+  "cries 55": [
+   "#055 Golduck",
+   "CryData: base cry 21, pitch FF, length 40"
+  ],
+  "cries 97": [
+   "#097 Hypno",
+   "CryData: base cry 0D, pitch EE, length 40"
+  ],
+  "cries 42": [
+   "#042 Golbat",
+   "CryData: base cry 1D, pitch FA, length 80"
+  ],
+  "cries 150": [
+   "#150 Mewtwo",
+   "CryData: base cry 1E, pitch 99, length FF"
+  ],
+  "cries 143": [
+   "#143 Snorlax",
+   "CryData: base cry 05, pitch 55, length 01"
+  ],
+  "cries 129": [
+   "#129 Magikarp",
+   "CryData: base cry 17, pitch 80, length 00"
+  ],
+  "cries 89": [
+   "#089 Muk",
+   "CryData: base cry 07, pitch EF, length FF"
+  ],
+  "cries 99": [
+   "#099 Kingler",
+   "CryData: base cry 20, pitch EE, length E0"
+  ],
+  "cries 91": [
+   "#091 Cloyster",
+   "CryData: base cry 18, pitch 6F, length E0"
+  ],
+  "cries 101": [
+   "#101 Electrode",
+   "CryData: base cry 06, pitch A8, length 90"
+  ],
+  "cries 36": [
+   "#036 Clefable",
+   "CryData: base cry 19, pitch AA, length 20"
+  ],
+  "cries 110": [
+   "#110 Weezing",
+   "CryData: base cry 12, pitch FF, length FF"
+  ],
+  "cries 53": [
+   "#053 Persian",
+   "CryData: base cry 19, pitch 99, length FF"
+  ],
+  "cries 105": [
+   "#105 Marowak",
+   "CryData: base cry 08, pitch 4F, length 60"
+  ],
+  "cries 93": [
+   "#093 Haunter",
+   "CryData: base cry 1C, pitch 30, length 40"
+  ],
+  "cries 63": [
+   "#063 Abra",
+   "CryData: base cry 1C, pitch C0, length 01"
+  ],
+  "cries 65": [
+   "#065 Alakazam",
+   "CryData: base cry 1C, pitch 98, length FF"
+  ],
+  "cries 17": [
+   "#017 Pidgeotto",
+   "CryData: base cry 14, pitch 28, length C0"
+  ],
+  "cries 18": [
+   "#018 Pidgeot",
+   "CryData: base cry 14, pitch 11, length FF"
+  ],
+  "cries 121": [
+   "#121 Starmie",
+   "CryData: base cry 1E, pitch 00, length 80"
+  ],
+  "cries 1": [
+   "#001 Bulbasaur",
+   "CryData: base cry 0F, pitch 80, length 01"
+  ],
+  "cries 3": [
+   "#003 Venusaur",
+   "CryData: base cry 0F, pitch 00, length C0"
+  ],
+  "cries 73": [
+   "#073 Tentacruel",
+   "CryData: base cry 1A, pitch EE, length FF"
+  ],
+  "cries 118": [
+   "#118 Goldeen",
+   "CryData: base cry 16, pitch 80, length 40"
+  ],
+  "cries 119": [
+   "#119 Seaking",
+   "CryData: base cry 16, pitch 10, length FF"
+  ],
+  "cries 77": [
+   "#077 Ponyta",
+   "CryData: base cry 25, pitch 00, length 80"
+  ],
+  "cries 78": [
+   "#078 Rapidash",
+   "CryData: base cry 25, pitch 20, length C0"
+  ],
+  "cries 19": [
+   "#019 Rattata",
+   "CryData: base cry 22, pitch 00, length 80"
+  ],
+  "cries 20": [
+   "#020 Raticate",
+   "CryData: base cry 22, pitch 20, length FF"
+  ],
+  "cries 33": [
+   "#033 Nidorino",
+   "CryData: base cry 00, pitch 2C, length C0"
+  ],
+  "cries 30": [
+   "#030 Nidorina",
+   "CryData: base cry 01, pitch 2C, length E0"
+  ],
+  "cries 74": [
+   "#074 Geodude",
+   "CryData: base cry 24, pitch F0, length 10"
+  ],
+  "cries 137": [
+   "#137 Porygon",
+   "CryData: base cry 25, pitch AA, length FF"
+  ],
+  "cries 142": [
+   "#142 Aerodactyl",
+   "CryData: base cry 23, pitch 20, length F0"
+  ],
+  "cries 81": [
+   "#081 Magnemite",
+   "CryData: base cry 1C, pitch 80, length 60"
+  ],
+  "cries 4": [
+   "#004 Charmander",
+   "CryData: base cry 04, pitch 60, length 40"
+  ],
+  "cries 7": [
+   "#007 Squirtle",
+   "CryData: base cry 1D, pitch 60, length 40"
+  ],
+  "cries 5": [
+   "#005 Charmeleon",
+   "CryData: base cry 04, pitch 20, length 40"
+  ],
+  "cries 8": [
+   "#008 Wartortle",
+   "CryData: base cry 1D, pitch 20, length 40"
+  ],
+  "cries 6": [
+   "#006 Charizard",
+   "CryData: base cry 04, pitch 00, length 80"
+  ],
+  "cries 43": [
+   "#043 Oddish",
+   "CryData: base cry 08, pitch DD, length 01"
+  ],
+  "cries 44": [
+   "#044 Gloom",
+   "CryData: base cry 08, pitch AA, length 40"
+  ],
+  "cries 45": [
+   "#045 Vileplume",
+   "CryData: base cry 23, pitch 22, length FF"
+  ],
+  "cries 69": [
+   "#069 Bellsprout",
+   "CryData: base cry 21, pitch 55, length 01"
+  ],
+  "cries 70": [
+   "#070 Weepinbell",
+   "CryData: base cry 25, pitch 44, length 20"
+  ],
+  "cries 71": [
+   "#071 Victreebel",
+   "CryData: base cry 25, pitch 66, length CC"
+  ]
+ },
+ "pokes": {
+  "cries 112": {
+   "wFrequencyModifier": 0,
+   "wTempoModifier": 128
+  },
+  "cries 115": {
+   "wFrequencyModifier": 0,
+   "wTempoModifier": 128
+  },
+  "cries 32": {
+   "wFrequencyModifier": 0,
+   "wTempoModifier": 128
+  },
+  "cries 35": {
+   "wFrequencyModifier": 204,
+   "wTempoModifier": 1
+  },
+  "cries 21": {
+   "wFrequencyModifier": 0,
+   "wTempoModifier": 128
+  },
+  "cries 100": {
+   "wFrequencyModifier": 237,
+   "wTempoModifier": 128
+  },
+  "cries 34": {
+   "wFrequencyModifier": 0,
+   "wTempoModifier": 128
+  },
+  "cries 80": {
+   "wFrequencyModifier": 0,
+   "wTempoModifier": 128
+  },
+  "cries 2": {
+   "wFrequencyModifier": 32,
+   "wTempoModifier": 128
+  },
+  "cries 103": {
+   "wFrequencyModifier": 0,
+   "wTempoModifier": 128
+  },
+  "cries 108": {
+   "wFrequencyModifier": 0,
+   "wTempoModifier": 128
+  },
+  "cries 102": {
+   "wFrequencyModifier": 0,
+   "wTempoModifier": 128
+  },
+  "cries 88": {
+   "wFrequencyModifier": 0,
+   "wTempoModifier": 128
+  },
+  "cries 94": {
+   "wFrequencyModifier": 0,
+   "wTempoModifier": 255
+  },
+  "cries 29": {
+   "wFrequencyModifier": 0,
+   "wTempoModifier": 128
+  },
+  "cries 31": {
+   "wFrequencyModifier": 0,
+   "wTempoModifier": 128
+  },
+  "cries 104": {
+   "wFrequencyModifier": 0,
+   "wTempoModifier": 128
+  },
+  "cries 111": {
+   "wFrequencyModifier": 0,
+   "wTempoModifier": 128
+  },
+  "cries 131": {
+   "wFrequencyModifier": 0,
+   "wTempoModifier": 128
+  },
+  "cries 59": {
+   "wFrequencyModifier": 0,
+   "wTempoModifier": 128
+  },
+  "cries 151": {
+   "wFrequencyModifier": 238,
+   "wTempoModifier": 255
+  },
+  "cries 130": {
+   "wFrequencyModifier": 0,
+   "wTempoModifier": 128
+  },
+  "cries 90": {
+   "wFrequencyModifier": 0,
+   "wTempoModifier": 128
+  },
+  "cries 72": {
+   "wFrequencyModifier": 0,
+   "wTempoModifier": 128
+  },
+  "cries 92": {
+   "wFrequencyModifier": 0,
+   "wTempoModifier": 128
+  },
+  "cries 123": {
+   "wFrequencyModifier": 0,
+   "wTempoModifier": 128
+  },
+  "cries 120": {
+   "wFrequencyModifier": 2,
+   "wTempoModifier": 32
+  },
+  "cries 9": {
+   "wFrequencyModifier": 0,
+   "wTempoModifier": 128
+  },
+  "cries 127": {
+   "wFrequencyModifier": 0,
+   "wTempoModifier": 128
+  },
+  "cries 114": {
+   "wFrequencyModifier": 0,
+   "wTempoModifier": 128
+  },
+  "cries 58": {
+   "wFrequencyModifier": 32,
+   "wTempoModifier": 64
+  },
+  "cries 95": {
+   "wFrequencyModifier": 255,
+   "wTempoModifier": 192
+  },
+  "cries 22": {
+   "wFrequencyModifier": 64,
+   "wTempoModifier": 160
+  },
+  "cries 16": {
+   "wFrequencyModifier": 223,
+   "wTempoModifier": 4
+  },
+  "cries 79": {
+   "wFrequencyModifier": 0,
+   "wTempoModifier": 128
+  },
+  "cries 64": {
+   "wFrequencyModifier": 168,
+   "wTempoModifier": 192
+  },
+  "cries 75": {
+   "wFrequencyModifier": 0,
+   "wTempoModifier": 128
+  },
+  "cries 113": {
+   "wFrequencyModifier": 10,
+   "wTempoModifier": 192
+  },
+  "cries 67": {
+   "wFrequencyModifier": 72,
+   "wTempoModifier": 96
+  },
+  "cries 122": {
+   "wFrequencyModifier": 8,
+   "wTempoModifier": 64
+  },
+  "cries 106": {
+   "wFrequencyModifier": 128,
+   "wTempoModifier": 192
+  },
+  "cries 107": {
+   "wFrequencyModifier": 238,
+   "wTempoModifier": 192
+  },
+  "cries 24": {
+   "wFrequencyModifier": 224,
+   "wTempoModifier": 16
+  },
+  "cries 47": {
+   "wFrequencyModifier": 66,
+   "wTempoModifier": 255
+  },
+  "cries 54": {
+   "wFrequencyModifier": 32,
+   "wTempoModifier": 96
+  },
+  "cries 96": {
+   "wFrequencyModifier": 136,
+   "wTempoModifier": 32
+  },
+  "cries 76": {
+   "wFrequencyModifier": 224,
+   "wTempoModifier": 64
+  },
+  "cries 126": {
+   "wFrequencyModifier": 255,
+   "wTempoModifier": 48
+  },
+  "cries 125": {
+   "wFrequencyModifier": 143,
+   "wTempoModifier": 255
+  },
+  "cries 82": {
+   "wFrequencyModifier": 32,
+   "wTempoModifier": 192
+  },
+  "cries 109": {
+   "wFrequencyModifier": 230,
+   "wTempoModifier": 221
+  },
+  "cries 56": {
+   "wFrequencyModifier": 221,
+   "wTempoModifier": 96
+  },
+  "cries 86": {
+   "wFrequencyModifier": 136,
+   "wTempoModifier": 192
+  },
+  "cries 50": {
+   "wFrequencyModifier": 170,
+   "wTempoModifier": 1
+  },
+  "cries 128": {
+   "wFrequencyModifier": 17,
+   "wTempoModifier": 64
+  },
+  "cries 83": {
+   "wFrequencyModifier": 221,
+   "wTempoModifier": 1
+  },
+  "cries 48": {
+   "wFrequencyModifier": 68,
+   "wTempoModifier": 64
+  },
+  "cries 149": {
+   "wFrequencyModifier": 60,
+   "wTempoModifier": 192
+  },
+  "cries 84": {
+   "wFrequencyModifier": 187,
+   "wTempoModifier": 1
+  },
+  "cries 60": {
+   "wFrequencyModifier": 255,
+   "wTempoModifier": 255
+  },
+  "cries 124": {
+   "wFrequencyModifier": 255,
+   "wTempoModifier": 255
+  },
+  "cries 146": {
+   "wFrequencyModifier": 248,
+   "wTempoModifier": 64
+  },
+  "cries 144": {
+   "wFrequencyModifier": 128,
+   "wTempoModifier": 64
+  },
+  "cries 145": {
+   "wFrequencyModifier": 255,
+   "wTempoModifier": 128
+  },
+  "cries 132": {
+   "wFrequencyModifier": 255,
+   "wTempoModifier": 255
+  },
+  "cries 52": {
+   "wFrequencyModifier": 119,
+   "wTempoModifier": 16
+  },
+  "cries 98": {
+   "wFrequencyModifier": 32,
+   "wTempoModifier": 224
+  },
+  "cries 37": {
+   "wFrequencyModifier": 79,
+   "wTempoModifier": 16
+  },
+  "cries 38": {
+   "wFrequencyModifier": 136,
+   "wTempoModifier": 96
+  },
+  "cries 25": {
+   "wFrequencyModifier": 238,
+   "wTempoModifier": 1
+  },
+  "cries 26": {
+   "wFrequencyModifier": 238,
+   "wTempoModifier": 8
+  },
+  "cries 147": {
+   "wFrequencyModifier": 96,
+   "wTempoModifier": 64
+  },
+  "cries 148": {
+   "wFrequencyModifier": 64,
+   "wTempoModifier": 128
+  },
+  "cries 140": {
+   "wFrequencyModifier": 187,
+   "wTempoModifier": 64
+  },
+  "cries 141": {
+   "wFrequencyModifier": 238,
+   "wTempoModifier": 1
+  },
+  "cries 116": {
+   "wFrequencyModifier": 153,
+   "wTempoModifier": 16
+  },
+  "cries 117": {
+   "wFrequencyModifier": 60,
+   "wTempoModifier": 1
+  },
+  "cries 27": {
+   "wFrequencyModifier": 32,
+   "wTempoModifier": 64
+  },
+  "cries 28": {
+   "wFrequencyModifier": 255,
+   "wTempoModifier": 255
+  },
+  "cries 138": {
+   "wFrequencyModifier": 240,
+   "wTempoModifier": 1
+  },
+  "cries 139": {
+   "wFrequencyModifier": 255,
+   "wTempoModifier": 64
+  },
+  "cries 39": {
+   "wFrequencyModifier": 255,
+   "wTempoModifier": 53
+  },
+  "cries 40": {
+   "wFrequencyModifier": 104,
+   "wTempoModifier": 96
+  },
+  "cries 133": {
+   "wFrequencyModifier": 136,
+   "wTempoModifier": 96
+  },
+  "cries 136": {
+   "wFrequencyModifier": 16,
+   "wTempoModifier": 32
+  },
+  "cries 135": {
+   "wFrequencyModifier": 61,
+   "wTempoModifier": 128
+  },
+  "cries 134": {
+   "wFrequencyModifier": 170,
+   "wTempoModifier": 255
+  },
+  "cries 66": {
+   "wFrequencyModifier": 238,
+   "wTempoModifier": 1
+  },
+  "cries 41": {
+   "wFrequencyModifier": 224,
+   "wTempoModifier": 128
+  },
+  "cries 23": {
+   "wFrequencyModifier": 18,
+   "wTempoModifier": 64
+  },
+  "cries 46": {
+   "wFrequencyModifier": 32,
+   "wTempoModifier": 224
+  },
+  "cries 61": {
+   "wFrequencyModifier": 119,
+   "wTempoModifier": 96
+  },
+  "cries 62": {
+   "wFrequencyModifier": 0,
+   "wTempoModifier": 255
+  },
+  "cries 13": {
+   "wFrequencyModifier": 238,
+   "wTempoModifier": 1
+  },
+  "cries 14": {
+   "wFrequencyModifier": 255,
+   "wTempoModifier": 1
+  },
+  "cries 15": {
+   "wFrequencyModifier": 96,
+   "wTempoModifier": 128
+  },
+  "cries 85": {
+   "wFrequencyModifier": 153,
+   "wTempoModifier": 32
+  },
+  "cries 57": {
+   "wFrequencyModifier": 175,
+   "wTempoModifier": 64
+  },
+  "cries 51": {
+   "wFrequencyModifier": 42,
+   "wTempoModifier": 16
+  },
+  "cries 49": {
+   "wFrequencyModifier": 41,
+   "wTempoModifier": 128
+  },
+  "cries 87": {
+   "wFrequencyModifier": 35,
+   "wTempoModifier": 255
+  },
+  "cries 10": {
+   "wFrequencyModifier": 128,
+   "wTempoModifier": 32
+  },
+  "cries 11": {
+   "wFrequencyModifier": 204,
+   "wTempoModifier": 1
+  },
+  "cries 12": {
+   "wFrequencyModifier": 119,
+   "wTempoModifier": 64
+  },
+  "cries 68": {
+   "wFrequencyModifier": 8,
+   "wTempoModifier": 192
+  },
+  "cries 55": {
+   "wFrequencyModifier": 255,
+   "wTempoModifier": 64
+  },
+  "cries 97": {
+   "wFrequencyModifier": 238,
+   "wTempoModifier": 64
+  },
+  "cries 42": {
+   "wFrequencyModifier": 250,
+   "wTempoModifier": 128
+  },
+  "cries 150": {
+   "wFrequencyModifier": 153,
+   "wTempoModifier": 255
+  },
+  "cries 143": {
+   "wFrequencyModifier": 85,
+   "wTempoModifier": 1
+  },
+  "cries 129": {
+   "wFrequencyModifier": 128,
+   "wTempoModifier": 0
+  },
+  "cries 89": {
+   "wFrequencyModifier": 239,
+   "wTempoModifier": 255
+  },
+  "cries 99": {
+   "wFrequencyModifier": 238,
+   "wTempoModifier": 224
+  },
+  "cries 91": {
+   "wFrequencyModifier": 111,
+   "wTempoModifier": 224
+  },
+  "cries 101": {
+   "wFrequencyModifier": 168,
+   "wTempoModifier": 144
+  },
+  "cries 36": {
+   "wFrequencyModifier": 170,
+   "wTempoModifier": 32
+  },
+  "cries 110": {
+   "wFrequencyModifier": 255,
+   "wTempoModifier": 255
+  },
+  "cries 53": {
+   "wFrequencyModifier": 153,
+   "wTempoModifier": 255
+  },
+  "cries 105": {
+   "wFrequencyModifier": 79,
+   "wTempoModifier": 96
+  },
+  "cries 93": {
+   "wFrequencyModifier": 48,
+   "wTempoModifier": 64
+  },
+  "cries 63": {
+   "wFrequencyModifier": 192,
+   "wTempoModifier": 1
+  },
+  "cries 65": {
+   "wFrequencyModifier": 152,
+   "wTempoModifier": 255
+  },
+  "cries 17": {
+   "wFrequencyModifier": 40,
+   "wTempoModifier": 192
+  },
+  "cries 18": {
+   "wFrequencyModifier": 17,
+   "wTempoModifier": 255
+  },
+  "cries 121": {
+   "wFrequencyModifier": 0,
+   "wTempoModifier": 128
+  },
+  "cries 1": {
+   "wFrequencyModifier": 128,
+   "wTempoModifier": 1
+  },
+  "cries 3": {
+   "wFrequencyModifier": 0,
+   "wTempoModifier": 192
+  },
+  "cries 73": {
+   "wFrequencyModifier": 238,
+   "wTempoModifier": 255
+  },
+  "cries 118": {
+   "wFrequencyModifier": 128,
+   "wTempoModifier": 64
+  },
+  "cries 119": {
+   "wFrequencyModifier": 16,
+   "wTempoModifier": 255
+  },
+  "cries 77": {
+   "wFrequencyModifier": 0,
+   "wTempoModifier": 128
+  },
+  "cries 78": {
+   "wFrequencyModifier": 32,
+   "wTempoModifier": 192
+  },
+  "cries 19": {
+   "wFrequencyModifier": 0,
+   "wTempoModifier": 128
+  },
+  "cries 20": {
+   "wFrequencyModifier": 32,
+   "wTempoModifier": 255
+  },
+  "cries 33": {
+   "wFrequencyModifier": 44,
+   "wTempoModifier": 192
+  },
+  "cries 30": {
+   "wFrequencyModifier": 44,
+   "wTempoModifier": 224
+  },
+  "cries 74": {
+   "wFrequencyModifier": 240,
+   "wTempoModifier": 16
+  },
+  "cries 137": {
+   "wFrequencyModifier": 170,
+   "wTempoModifier": 255
+  },
+  "cries 142": {
+   "wFrequencyModifier": 32,
+   "wTempoModifier": 240
+  },
+  "cries 81": {
+   "wFrequencyModifier": 128,
+   "wTempoModifier": 96
+  },
+  "cries 4": {
+   "wFrequencyModifier": 96,
+   "wTempoModifier": 64
+  },
+  "cries 7": {
+   "wFrequencyModifier": 96,
+   "wTempoModifier": 64
+  },
+  "cries 5": {
+   "wFrequencyModifier": 32,
+   "wTempoModifier": 64
+  },
+  "cries 8": {
+   "wFrequencyModifier": 32,
+   "wTempoModifier": 64
+  },
+  "cries 6": {
+   "wFrequencyModifier": 0,
+   "wTempoModifier": 128
+  },
+  "cries 43": {
+   "wFrequencyModifier": 221,
+   "wTempoModifier": 1
+  },
+  "cries 44": {
+   "wFrequencyModifier": 170,
+   "wTempoModifier": 64
+  },
+  "cries 45": {
+   "wFrequencyModifier": 34,
+   "wTempoModifier": 255
+  },
+  "cries 69": {
+   "wFrequencyModifier": 85,
+   "wTempoModifier": 1
+  },
+  "cries 70": {
+   "wFrequencyModifier": 68,
+   "wTempoModifier": 32
+  },
+  "cries 71": {
+   "wFrequencyModifier": 102,
+   "wTempoModifier": 204
+  }
+ }
+}

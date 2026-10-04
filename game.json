@@ -1,0 +1,73 @@
+{
+  "id": "pokered",
+  "title": "POKEMON RED",
+  "publisher": "Nintendo",
+  "year": 1996,
+  "rom": "pokered.gb",
+  "sha1": "ea9bcae617fdf159b045185467ae58b2e4a48b9a",
+  "src": ".",
+  "objects": [
+    "audio.asm",
+    "home.asm",
+    "main.asm",
+    "maps.asm",
+    "ram.asm",
+    "text.asm",
+    "gfx/pics.asm",
+    "gfx/sprites.asm",
+    "gfx/tilesets.asm"
+  ],
+  "asm_flags": [
+    "-Q8",
+    "-P",
+    "includes.asm",
+    "-D",
+    "_RED"
+  ],
+  "link_flags": [
+    "-d",
+    "-p",
+    "0x00",
+    "-l",
+    "layout.link"
+  ],
+  "fix_flags": [
+    "-jsv",
+    "-n",
+    "0",
+    "-k",
+    "01",
+    "-l",
+    "0x33",
+    "-m",
+    "MBC3+RAM+BATTERY",
+    "-r",
+    "03",
+    "-p",
+    "0x00",
+    "-t",
+    "POKEMON RED"
+  ],
+  "entry": "Start",
+  "unit_labels": "global",
+  "helpers": "tools/gbbolt_helpers.py",
+  "views": "tools/gbbolt_views.py",
+  "test_memory": {
+    "stack_top": "0xDFF0",
+    "stack_zone": [
+      "0xDF00",
+      "0xE000"
+    ],
+    "free_ram": [
+      "0xC000",
+      "0xC100"
+    ],
+    "scratch": [
+      [
+        "wPredefHL",
+        6
+      ]
+    ],
+    "rom_bank_var": "hLoadedROMBank"
+  }
+}
