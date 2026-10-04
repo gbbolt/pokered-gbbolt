@@ -65,7 +65,10 @@ def build(ctx):
             after()
         if not r.mem[0xFF47]:                      # still faded to white: show it with GBPalNormal's palettes
             r.mem[0xFF47], r.mem[0xFF48], r.mem[0xFF49] = 0xE4, 0xD0, 0xE0
-        img, colors = coloured(r.screen(how))
+        frame = r.screen(how)
+        if name == 'ScreenTitle':
+            ctx.poster(frame, 'title')          # gen/screens_title.png: the hub's thumbnail
+        img, colors = coloured(frame)
         out.append({'name': name, 'type': 'image', 'title': title, 'subtitle': 'drawn by ' + routine,
                     'source': source, 'width': 160, 'height': 144, 'pixels': ctx.pixels(img), 'scale': 3,
                     'doc': doc + (['On a Super Game Boy the screen is coloured with {} (pick "colour" above).'.format(

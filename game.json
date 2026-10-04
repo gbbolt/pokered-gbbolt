@@ -52,6 +52,7 @@
   "unit_labels": "global",
   "helpers": "tools/gbbolt_helpers.py",
   "views": "tools/gbbolt_views.py",
+  "thumbnail": "gen/screens_title.png",
   "test_memory": {
     "stack_top": "0xDFF0",
     "stack_zone": [
