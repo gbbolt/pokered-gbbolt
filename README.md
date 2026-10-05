@@ -4,7 +4,7 @@
 
 A complete, matching disassembly of *Pokémon Red* for the Game Boy (Game Freak / Nintendo, 1996),
 with pseudo-code written next to every function. It is read with
-[gbbolt](https://github.com/AlexanderStebner/gbbolt): code and pseudo-code side by side, each short
+[gbbolt](https://github.com/gbbolt/gbbolt): code and pseudo-code side by side, each short
 piece of Python directly above the few instructions that do it.
 
 ## Based on pret/pokered
@@ -53,8 +53,8 @@ The disassembly rebuilds the original ROM byte for byte. You need
 [RGBDS](https://rgbds.gbdev.io) 1.0.1, Python 3.9+ with numpy, and gbbolt next to this folder:
 
 ```
-git clone https://github.com/AlexanderStebner/gbbolt
-git clone https://github.com/AlexanderStebner/pokered-gbbolt
+git clone https://github.com/gbbolt/gbbolt
+git clone https://github.com/gbbolt/pokered-gbbolt
 cd pokered-gbbolt
 python ../gbbolt/tools/audio.py             # render the music (needs ffmpeg)
 python ../gbbolt/tools/gbbolt.py            # build, verify, write out/site/index.html
